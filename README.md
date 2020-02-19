@@ -24,7 +24,11 @@ persistent_peers = ""
 ```
 设置好gasprice并启动程序
 ```
-nohup qbaod start --minimum-gas-prices 25000000000.0ajt > jd.log &
+nohup qbaod start --minimum-gas-prices 25000000000.0aqbt > jd.log &
+```
+配置qbaocli所在网络
+```
+qbaocli config chain-id qbaonet
 ```
 
 ## 新建账户
@@ -36,3 +40,50 @@ qbaocli keys add <name>
 ```
 qbaocli keys add <name> -i
 ```
+检查本地所有用户列表
+```
+qbaocli keys list
+```
+发送QBT给收款方
+```
+qbaocli tx send <name> <receive_address> <amount>qbt --fees=5000000000000000aqbt --broadcast-mode sync
+
+例：发送100qbt到另一个地址
+qbaocli tx send myname qbt1pkeelrpsz48a6nq2eyg6avy66fevm6v0rf43ju 100qbt --fees=5000000000000000aqbt --broadcast-mode sync
+```
+> 注意：aqbt为最小单位，1qbt=10^18aqbt，tx操作需要支付手续费，建议默认5000000000000000aqbt
+
+查询地址余额
+```
+qbaocli query account <address>
+```
+> 注意：当您查询QBT为零的帐户余额时，将出现以下错误：account does not exist；如果全节点尚未同步到最新区块，也可能发生这种情况，这都是正常的。
+
+
+## 代币委托
+在qbaochain，用户可以将代币委托给验证者并获取收益，你可以通过以下命令查询当前网络里所有验证者的信息
+```
+qbaocli query staking validators
+```
+确认验证者后，委托代币给验证者
+```
+qbaocli tx staking delegate <validator_address> <amount>qbt --from <name> --fees=5000000000000000aqbt --broadcast-mode sync
+```
+检查你当前账户下的所有委托
+```
+qbaocli query staking delegations <address>
+```
+检查你当前账户下的所有收益
+```
+qbaocli query distribution rewards <address>
+```
+提取你的收益到地址上
+```
+qbaocli tx distribution withdraw-all-rewards --from <name> --fees=5000000000000000aqbt --broadcast-mode sync
+```
+赎回委托（需要14天的赎回期才能到账）
+```
+qbaocli tx staking unbond <validator_address> <amount>qbt --from <account_name> --fees=5000000000000000aqbt --broadcast-mode sync
+```
+
+**更多命令查看请使用：qbaocli -h**
