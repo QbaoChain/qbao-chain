@@ -20,7 +20,7 @@ curl https://raw.githubusercontent.com/QbaoChain/qbao-chain/master/genesis.json 
 ```
 修改配置~/.qbaod/config/config.toml，添加peers节点
 ```
-persistent_peers = ""
+persistent_peers = "ca5cf862d6d25801147e3ed46f3e674cfe8e14fe@47.75.80.75:26656"
 ```
 设置好gasprice并启动程序
 ```
