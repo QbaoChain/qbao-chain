@@ -24,7 +24,7 @@ persistent_peers = "ca5cf862d6d25801147e3ed46f3e674cfe8e14fe@47.75.80.75:26656"
 ```
 设置好gasprice并启动程序
 ```
-nohup qbaod start --minimum-gas-prices 25000000000.0aqbt > jd.log &
+nohup qbaod start --minimum-gas-prices 25000000000.0aqbt > qbaod.log &
 ```
 配置qbaocli所在网络
 ```
