@@ -81,7 +81,7 @@ qbaocli query distribution rewards <address>
 ```
 qbaocli tx distribution withdraw-all-rewards --from <name> --fees=5000000000000000aqbt --broadcast-mode sync
 ```
-赎回委托（需要14天的赎回期才能到账）
+赎回委托（需要21天的赎回期才能到账）
 ```
 qbaocli tx staking unbond <validator_address> <amount>qbt --from <account_name> --fees=5000000000000000aqbt --broadcast-mode sync
 ```
